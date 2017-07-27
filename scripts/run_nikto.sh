@@ -34,12 +34,12 @@ fi
 NIKTO_SSL=""
 SSL_CONNECTION_LINES=$(sleep 5 ; echo -e "^C" 2> /dev/null | openssl s_client -connect "$HOST_NAME":"$PORT" -brief 2>&1 | grep "ESTABLISHED" | wc -l )
 
-if [ "$SSL_CONNECTION_LINES" -gt 0 ]; then 
+if [ "$SSL_CONNECTION_LINES" -gt 0 ]; then #ssl connection successful.
        NIKTO_SSL="-ssl"
        echo  "ssl-connection"
 echo
 fi
-if [ "$SSL_CONNECTION_LINES" -lt 1 ]; then
+if [ "$SSL_CONNECTION_LINES" -lt 1 ]; then #nossl connection.
          NIKTO_SSL="-nossl"
          echo "No-ssl_Connection"
 echo
